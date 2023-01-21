@@ -22,8 +22,25 @@ namespace NLayer.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); // reflection ile tüm assembly'leri bulup değişiklikleri utguluyor. 
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); // reflection ile tüm assembly'leri bulup değişiklikleri uyguluyor. 
             
+
+            modelBuilder.Entity<ProductFeature>().HasData(new ProductFeature()
+            {
+                Id=1,
+                Color="Red",
+                Height=100,
+                Width=200,
+                ProductId=1,
+            },
+            new ProductFeature()                                   // bu şekilde de eklenebilir fakat Seeds içerisinde olmasını tercih ediyoruz.
+            {
+                Id = 2,
+                Color = "Blue",
+                Height = 300,
+                Width = 300,
+                ProductId = 2,
+            });
             base.OnModelCreating(modelBuilder);
         }
     }
