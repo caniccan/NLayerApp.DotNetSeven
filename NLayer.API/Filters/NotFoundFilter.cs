@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using NLayer.Core.DTOs;
 using NLayer.Core.Models;
 using NLayer.Core.Services;
 
@@ -23,14 +25,15 @@ namespace NLayer.API.Filters
                 return;
             }
             var id=(int)idValue;
-            var anyEntity=await _service.AnyAsync(x=>x.);
+            var anyEntity=await _service.AnyAsync(x=>x.Id==id);
 
             if (anyEntity)
             {
-
+                await next.Invoke();
+                return;
             }
 
-            throw new NotImplementedException();
+            context.Result = new NotFoundObjectResult(CustomResponseDTO<NoContentDTO>.Fail(404, $"{typeof(T).Name}({id}) not found"));
         }
     }
 }
