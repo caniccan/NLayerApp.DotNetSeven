@@ -46,5 +46,30 @@ namespace NLayer.Web.Controllers
             ViewBag.categories = new SelectList(categoriesDTO, "Id", "Name");
             return View();
         }
+
+        public async Task<IActionResult> Update(int id)
+        {
+            var product=await _service.GetByIdAsync(id);
+            var categories = await _categoryService.GetAllAsync();
+            var categoriesDTO = _mapper.Map<List<CategoryDTO>>(categories.ToList());
+            ViewBag.categories = new SelectList(categoriesDTO, "Id", "Name",product.CategoryId);
+            return View(_mapper.Map<ProductDTO>(product));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(ProductDTO productDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                await _service.UpdateAsync(_mapper.Map<Product>(productDTO));
+                return RedirectToAction(nameof(Index));
+            }
+
+            var categories = await _categoryService.GetAllAsync();
+            var categoriesDTO = _mapper.Map<List<CategoryDTO>>(categories.ToList());
+            ViewBag.categories = new SelectList(categoriesDTO, "Id", "Name", productDTO.CategoryId);
+            return View(productDTO);
+        }
+
     }
 }
