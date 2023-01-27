@@ -43,6 +43,7 @@ namespace NLayer.Web.Controllers
             }
             var categories = await _categoryService.GetAllAsync();
             var categoriesDTO = _mapper.Map<List<CategoryDTO>>(categories.ToList());
+            ViewBag.categories = new SelectList(categoriesDTO, "Id", "Name");
             return View();
         }
     }
