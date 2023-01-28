@@ -45,7 +45,7 @@ namespace NLayer.API.Controllers
             return CreateActionResult(CustomResponseDTO<ProductDTO>.Success(200, productsDTO));
         }
 
-        [HttpPost()]
+        [HttpPost]
         public async Task<IActionResult> Save(ProductDTO productDTO)
         {
             var product = await _service.AddAsync(_mapper.Map<Product>(productDTO));
@@ -53,7 +53,7 @@ namespace NLayer.API.Controllers
             return CreateActionResult(CustomResponseDTO<ProductDTO>.Success(201, productsDTO));
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<IActionResult> Update(ProductUpdateDTO productDTO)
         {
             await _service.UpdateAsync(_mapper.Map<Product>(productDTO));
