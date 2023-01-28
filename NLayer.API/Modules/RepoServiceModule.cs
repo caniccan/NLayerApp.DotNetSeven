@@ -25,8 +25,9 @@ namespace NLayer.API.Modules
 
             builder.RegisterGeneric(typeof(ServiceWithDTO<,>)).As(typeof(IServiceWithDTO<,>)).InstancePerLifetimeScope();
 
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
 
+            builder.RegisterType<ProductServiceWithDTO>().As<IProductServiceWithDTO>().InstancePerLifetimeScope();
 
             var apiAssembly=Assembly.GetExecutingAssembly();
 
