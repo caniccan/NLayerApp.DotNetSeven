@@ -19,7 +19,7 @@ namespace NLayer.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var categories= await _categoryService.GetAllAsync();
+            var categories = await _categoryService.GetAllAsync();
             var categoriesDTO = _mapper.Map<List<CategoryDTO>>(categories.ToList());
             return CreateActionResult(CustomResponseDTO<List<CategoryDTO>>.Success(200, categoriesDTO));
         }
@@ -30,6 +30,6 @@ namespace NLayer.API.Controllers
         {
             return CreateActionResult(await _categoryService.GetSingleCategoryByIdWithProductsAsync(categoryId));
         }
-         
+
     }
 }

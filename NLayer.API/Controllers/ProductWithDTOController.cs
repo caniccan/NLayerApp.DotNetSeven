@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using NLayer.API.Filters;
 using NLayer.Core.DTOs;
 using NLayer.Core.Models;
@@ -70,7 +69,7 @@ namespace NLayer.API.Controllers
         [HttpDelete("Any/{id}")]
         public async Task<IActionResult> Any(int id)
         {
-            return CreateActionResult(await _productServiceWithDTO.AnyAsync(x=>x.Id==id));
+            return CreateActionResult(await _productServiceWithDTO.AnyAsync(x => x.Id == id));
         }
 
 

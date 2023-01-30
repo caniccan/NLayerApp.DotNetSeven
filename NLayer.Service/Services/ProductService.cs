@@ -22,7 +22,7 @@ namespace NLayer.Service.Services
         {
             var product = await _productRepository.GetProductsWithCateogry();
             var productsDTO = _mapper.Map<List<ProductWithCategoryDTO>>(product);
-            return CustomResponseDTO<List<ProductWithCategoryDTO>>.Success(200,productsDTO);
+            return CustomResponseDTO<List<ProductWithCategoryDTO>>.Success(200, productsDTO);
         }
     }
 }

@@ -32,7 +32,7 @@ namespace NLayer.Web.Services
 
         public async Task<bool> UpdateAsync(ProductDTO productDTO)
         {
-            var response= await _httpClient.PutAsJsonAsync("products", productDTO);
+            var response = await _httpClient.PutAsJsonAsync("products", productDTO);
             return response.IsSuccessStatusCode;
         }
 

@@ -1,9 +1,7 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NLayer.Core.DTOs;
 using NLayer.Core.Models;
-using NLayer.Core.Services;
 using NLayer.Web.Services;
 
 namespace NLayer.Web.Controllers
@@ -48,9 +46,9 @@ namespace NLayer.Web.Controllers
         [ServiceFilter(typeof(NotFoundFilter<Product>))]
         public async Task<IActionResult> Update(int id)
         {
-            var product=await _productApiService.GetByIdAsync(id);
+            var product = await _productApiService.GetByIdAsync(id);
             var categoriesDTO = await _categoryApiService.GetAllAsync();
-            ViewBag.categories = new SelectList(categoriesDTO, "Id", "Name",product.CategoryId);
+            ViewBag.categories = new SelectList(categoriesDTO, "Id", "Name", product.CategoryId);
             return View(product);
         }
 

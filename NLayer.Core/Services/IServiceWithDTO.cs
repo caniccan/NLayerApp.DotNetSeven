@@ -1,15 +1,10 @@
 ﻿using NLayer.Core.DTOs;
 using NLayer.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NLayer.Core.Services
 {
-    public interface IServiceWithDTO<Entity,DTO> where Entity : BaseEntity where DTO: class
+    public interface IServiceWithDTO<Entity, DTO> where Entity : BaseEntity where DTO : class
     {
         Task<CustomResponseDTO<DTO>> GetByIdAsync(int id);
         Task<CustomResponseDTO<IEnumerable<DTO>>> GetAllAsync();
